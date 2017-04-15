@@ -14,10 +14,10 @@ $(document).ready(function(){
         var domString = "";
         for(var i=0; i<explosion.length; i++){
           if(i%3===0){
-            domString += `<div class="container">`;
+            domString += `<div class="container card-cont">`;
             domString += `<div class="row">`;
           }
-          domString += `<div class="col-md-4 card hide">`;
+          domString += `<div class="col-md-4 card hide-card">`;
           domString += `<h1>${explosion[i].name}</h1>`;
           domString += `<section>${explosion[i].description}</section>`;
           domString += `</div>`;
@@ -26,6 +26,7 @@ $(document).ready(function(){
             domString += `</div>`;
           }
         }
+        // console.log(explosion.products);
         $(".output").append(domString);
     }
 
@@ -128,7 +129,6 @@ var typeJSON = function(){
     });
     // writeDOM();
     selectArray();
-    selection();
   })
 
 	Promise.all([prodJSON(), typeJSON()])
