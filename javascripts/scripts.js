@@ -1,15 +1,23 @@
 $(document).ready(function(){
 
+    var categories = [];
     var explosion = [];
+
+    // function selection(){
+    //   if($(".select-item").val === "Recreational"){
+    //     explosion[i].type = $(".card").removeClass("hide");
+    //     console.log("type", explosion[i].type);
+    //   }
+    // }
 
     function writeDOM(){
         var domString = "";
         for(var i=0; i<explosion.length; i++){
           if(i%3===0){
-            domString += `<div class="container">`
+            domString += `<div class="container">`;
             domString += `<div class="row">`;
           }
-          domString += `<div class="col-md-4">`;
+          domString += `<div class="col-md-4 card hide">`;
           domString += `<h1>${explosion[i].name}</h1>`;
           domString += `<section>${explosion[i].description}</section>`;
           domString += `</div>`;
@@ -19,6 +27,17 @@ $(document).ready(function(){
           }
         }
         $(".output").append(domString);
+    }
+
+    function selectArray(){
+      var newSelect = "";
+      newSelect += `<select class="select-item">`;
+      newSelect += `<option>Please select</option>`;
+      for(var i=0; i<categories.length; i++){
+        newSelect += `<option>${categories[i].name}</option>`;
+      }
+      newSelect += `</select>`;
+      $(".select-option").append(newSelect);
     }
 
 //pyramid of dooom
@@ -47,7 +66,7 @@ $(document).ready(function(){
     // });
 
 //iife, like a getter
-var firstDinosaurJSON = function(){
+var catJSON = function(){
 	return new Promise(function(resolve, reject){
 		$.ajax("./json/categories.json").done(function(dataCat){
 			resolve(dataCat.categories);
@@ -57,7 +76,7 @@ var firstDinosaurJSON = function(){
 	});
 };
 
-var secondDinosaurJSON = function(){
+var prodJSON = function(){
 	return new Promise(function(resolve, reject){
 		$.ajax("./json/products.json").done(function(dataProd){
 			resolve(dataProd.products);
@@ -67,7 +86,7 @@ var secondDinosaurJSON = function(){
 	});
 };
 
-var thirdDinosaurJSON = function(){
+var typeJSON = function(){
 	return new Promise(function(resolve, reject){
 		$.ajax("./json/types.json").done(function(dataType){
 			resolve(dataType.types);
@@ -102,7 +121,17 @@ var thirdDinosaurJSON = function(){
 // 	console.log(jsonDataFail1);
 // });
 
-	Promise.all([firstDinosaurJSON(), secondDinosaurJSON(), thirdDinosaurJSON()])
+
+  catJSON().then(function(cat){
+    cat.forEach(function(category){
+      categories.push(category);
+    });
+    // writeDOM();
+    selectArray();
+    selection();
+  })
+
+	Promise.all([prodJSON(), typeJSON()])
 		.then(function(resultz){
 			console.log("resultz", resultz);
 			resultz.forEach(function(ajaxCalls){

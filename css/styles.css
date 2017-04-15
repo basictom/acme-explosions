@@ -1,0 +1,18 @@
+.select-option {
+  height: 200px;
+  background-color: powderblue;
+}
+
+.hide {
+  display: none;
+}
+
+select {
+  padding: 20px;
+  border-radius: none;
+  appearence: none;
+}
+
+.select-item {
+  padding: 15px;
+}
