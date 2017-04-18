@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    var typeArray = [];
     var categories = [];
     var explosion = [];
 
@@ -10,6 +11,29 @@ $(document).ready(function(){
     //   }
     // }
 
+    $(document).click(function(){
+      console.log("click");
+      eventListener();
+    });
+
+    function clickCat(){
+      // if($("#cat-0") == 0){
+      //   $(".card").removeClass("hide-card");
+      //   console.log("0 clicked");
+      // }else if($("#cat-1") == $("#cat-1")){
+      //   $(".card").removeClass("hide-card");
+      //   console.log("1 clicked");
+      // }else{
+      //   console.log("hitting if statement, change perameters");
+      // }
+    }
+
+    function eventListener(){
+      $(".select-item").on("change", function(){
+        clickCat();
+      });
+    }
+
     function writeDOM(){
         var domString = "";
         for(var i=0; i<explosion.length; i++){
@@ -17,7 +41,7 @@ $(document).ready(function(){
             domString += `<div class="container card-cont">`;
             domString += `<div class="row">`;
           }
-          domString += `<div class="col-md-4 card hide-card">`;
+          domString += `<div class="col-md-4 card hide-card" id="cat-${explosion[i].category}">`;
           domString += `<h1>${explosion[i].name}</h1>`;
           domString += `<section>${explosion[i].description}</section>`;
           domString += `</div>`;
@@ -40,7 +64,16 @@ $(document).ready(function(){
       newSelect += `</select>`;
       $(".select-option").append(newSelect);
     }
-
+    function selectTypeArray(){
+      var newType = "";
+      newType += `<select class="select-item">`;
+      newType += `<option>Please select</option>`;
+      for(var i=0; i<typeArray.length; i++){
+        newType += `<option id="type-${typeArray[i].id}">${typeArray[i].name}</option>`;
+      }
+      newType += `</select>`;
+      $(".select-type").append(newType);
+    }
 //pyramid of dooom
     // $.ajax("./db/dinosaurs1.json").done(function(data1){
     //     console.log("data1", data1.dinosaurs1);
@@ -127,11 +160,20 @@ var typeJSON = function(){
     cat.forEach(function(category){
       categories.push(category);
     });
-    // writeDOM();
     selectArray();
-  })
+  });
 
-	Promise.all([prodJSON(), typeJSON()])
+  typeJSON().then(function(type){
+    console.log("type",type);
+    type.forEach(function(types){
+      typeArray.push(types);
+    });
+    selectTypeArray();
+  });
+
+
+
+	Promise.all([prodJSON()])
 		.then(function(resultz){
 			console.log("resultz", resultz);
 			resultz.forEach(function(ajaxCalls){

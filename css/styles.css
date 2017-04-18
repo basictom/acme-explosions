@@ -5,6 +5,13 @@
   padding: 30px;
   text-align:center;
 }
+.select-type {
+  height: auto;
+  /* background-color: powderblue; */
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+}
 .card-cont {
   margin: 0 auto;
 }
@@ -17,8 +24,12 @@
   background-color: powderblue;
 }
 
+.hide-option {
+  display:none;
+}
+
 .hide-card {
-  /*display: none;*/
+  display: none;
 }
 
 select {

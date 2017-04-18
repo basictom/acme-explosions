@@ -14,6 +14,36 @@
             "id": 2,
             "name": "Heavy Duty",
             "description": "Very dangerous. Take precaution!"
+        },
+        {
+            "id": 4,
+            "name": "Personal",
+            "description": "Small grade products"
+        },
+        {
+            "id": 5,
+            "name": "Handheld",
+            "description": "Products held for use"
+        },
+        {
+            "id": 6,
+            "name": "Heavy Duty",
+            "description": "Very dangerous. Take precaution!"
+        },
+        {
+            "id": 7,
+            "name": "Personal",
+            "description": "Small grade products"
+        },
+        {
+            "id": 8,
+            "name": "Handheld",
+            "description": "Products held for use"
+        },
+        {
+            "id": 9,
+            "name": "Heavy Duty",
+            "description": "Very dangerous. Take precaution!"
         }
     ]
 }
